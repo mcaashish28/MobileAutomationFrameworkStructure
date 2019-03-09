@@ -11,9 +11,11 @@ import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class DesiredCapabilitiesCode {
+public class BaseClass {
 
-    public static void main(String[] args) throws MalformedURLException {
+    public static AndroidDriver<AndroidElement> driver;
+
+    public static AndroidDriver<AndroidElement> Capabilities() throws MalformedURLException {
 
         File fs = new File("./src/GenericMobileApp/ApiDemos-debug.apk");
 
@@ -21,8 +23,8 @@ public class DesiredCapabilitiesCode {
         cap.setCapability(MobileCapabilityType.DEVICE_NAME,"EmulatorName");
         cap.setCapability(MobileCapabilityType.APP,fs.getAbsoluteFile());
 
-        AndroidDriver<AndroidElement> driver = new AndroidDriver<AndroidElement>(new URL("http://127.0.0.1:4723"),cap);
-
+        driver = new AndroidDriver<AndroidElement>(new URL("http://127.0.0.1:4723/wd/hub"),cap);
+        return driver;
 
     }
 
